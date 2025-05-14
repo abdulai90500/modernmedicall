@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us - Email Sender</title>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .contact-form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .contact-form h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .contact-form button {
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .contact-form button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div class="contact-form">
+  <h2>Contact Us</h2>
+  <form id="contact-form">
+    <input type="text" name="user_name" placeholder="Your Name" required>
+    <input type="email" name="user_email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+<script type="text/javascript">
+  (function() {
+    emailjs.init("xJfwZ9BcensS5NoJ7"); // <-- Replace with your EmailJS public key
+  })();
+
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm('service_p05nnd8', 'template_4hpr9tr', this)
+      .then(function() {
+        alert('Email sent successfully!');
+        document.getElementById('contact-form').reset(); // clear form
+      }, function(error) {
+        console.error('FAILED...', error);
+        alert('Oops! Something went wrong. Please try again.');
+      });
+  });
+</script>
+
+</body>
+</html>
